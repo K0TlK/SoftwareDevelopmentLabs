@@ -1,16 +1,41 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
+from PyQt6.QtWidgets import QApplication
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def run_lab(lab_module):
+    """Функция для запуска лабораторной работы."""
+    MainWindow = lab_module.MainWindow  # Импортируем класс MainWindow из модуля
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    app.exec()
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    labs = {
+        '1': 'Lab1',
+        '2': 'Lab2',
+        '3': 'Lab3',
+        '4': 'Lab4',
+        '5': 'Lab5',
+        '6': 'Lab6'
+    }
+    # Меню для выбора лабораторной работы
+    while True:
+        print("Выберите лабораторную работу для запуска:")
+        for key, value in labs.items():
+            print(f"{key}: {value}")
+        print("7: Выход")
+        choice = input("Введите номер (1-7): ")
+
+        if choice in labs:
+            lab_module = __import__(labs[choice])
+            run_lab(lab_module)
+        elif choice == '7':
+            print("Выход из программы.")
+            break
+        else:
+            print("Некорректный ввод, попробуйте снова.")
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
