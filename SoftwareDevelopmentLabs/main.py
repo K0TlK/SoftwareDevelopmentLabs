@@ -4,9 +4,10 @@ from PyQt6.QtWidgets import QApplication
 
 def run_lab(lab_module):
     """Функция для запуска лабораторной работы."""
-    MainWindow = lab_module.MainWindow  # Импортируем класс MainWindow из модуля
     app = QApplication(sys.argv)
+    MainWindow = lab_module.MainWindow
     window = MainWindow()
+    window.show()
     app.exec()
 
 
@@ -19,7 +20,6 @@ def main():
         '5': 'Lab5',
         '6': 'Lab6'
     }
-    # Меню для выбора лабораторной работы
     while True:
         print("Выберите лабораторную работу для запуска:")
         for key, value in labs.items():
